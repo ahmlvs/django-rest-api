@@ -26,3 +26,24 @@ python3 manage.py startapp api
 "api",
 
 7. after can start create models, url, etc.
+
+------
+
+we will create simple api for users creation, update and delete.
+
+1. define User in api/models
+
+2. create db from our models
+python3 manage.py makemigrations
+python3 manage.py migrate 
+
+3. create serializer that transform model to json data in api
+
+4. create views for api
+
+5. add views to api/urls
+
+6. add api/urls to baseapi/urls
+
+7. start server
+python3 manage.py runserver
