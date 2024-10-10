@@ -8,5 +8,15 @@ from .serializer import UserSerializer
 
 @api_view(["GET"])
 def get_users(request):
-    # example to check functionality
-    return Response(UserSerializer({"name": "John", "age": 30}).data)
+    users = User.objects.all()
+    serializer = UserSerializer(users, many=True)
+    return Response(serializer.data)
+
+
+@api_view(["POST"])
+def create_user(request):
+    user = UserSerializer(data=request.data)
+    if user.is_valid():
+        user.save()
+        return Response(user.data, status=status.HTTP_201_CREATED)
+    return Response(user.errors, status=status.HTTP_400_BAD_REQUEST)
